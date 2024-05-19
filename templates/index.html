@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemi Sınıflandırma</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Gemi Sınıflandırma</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <button id="theme-toggle" class="btn btn-secondary" onclick="toggleTheme()">Karanlık Modu Değiştir
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body text-center">
+            <h1 class="card-title">Gemi Sınıflandırma</h1>
+            <form id="upload-form" enctype="multipart/form-data" class="mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="file-input" accept="image/*"
+                           onchange="previewImage(event)">
+                    <label class="custom-file-label" for="file-input">Dosya seç</label>
+                </div>
+                <button type="button" class="btn btn-primary mt-3" onclick="uploadImage()">Tahmin Et</button>
+            </form>
+            <div id="feedback" class="alert mt-3" style="display: none;"></div>
+            <div id="loading" class="spinner-border text-primary" style="display: none;" role="status">
+                <span class="sr-only">Yükleniyor...</span>
+            </div>
+            <div id="result" class="mt-3"></div>
+            <div class="image-preview mt-3">
+                <img id="uploaded-image" class="img-fluid" src="" alt="" style="display: none; max-height: 400px;">
+            </div>
+            <div id="history" class="mt-5">
+                <h5>Tahmin Geçmişi</h5>
+                <ul id="history-list" class="list-group"></ul>
+            </div>
+            <div id="help" class="mt-5">
+                <h5>Yardım & Bilgilendirme</h5>
+                <div class="help-item">
+                    <span class="help-icon">&#x1F4C4;</span>
+                    <p>“Dosya seç” butonuna tıklayarak cihazınızdan bir gemi resmi seçin.</p>
+                </div>
+                <div class="help-item">
+                    <span class="help-icon">&#x1F4BE;</span>
+                    <p>Resim seçildikten sonra, sınıflandırma işlemini başlatmak için “Tahmin Et” butonuna tıklayın.</p>
+                </div>
+                <div class="help-item">
+                    <span class="help-icon">&#x1F4C8;</span>
+                    <p>Tahmin sonucu ve güven seviyesi gösterilecektir.</p>
+                </div>
+                <div class="help-item">
+                    <span class="help-icon">&#x1F4D6;</span>
+                    <p>Tahmin geçmişi, sonuç bölümünün altında tutulacaktır.</p>
+                </div>
+                <div class="help-item">
+                    <span class="help-icon">&#x1F319;</span>
+                    <p>“Karanlık Modu Değiştir” butonunu kullanarak ışık ve karanlık modlar arasında geçiş
+                        yapabilirsiniz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer mt-5 py-3 bg-light">
+    <div class="container text-center">
+        <span class="text-muted">© 2024 Gemi Sınıflandırma Uygulaması</span>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/static/scripts.js"></script>
+</body>
+</html>
