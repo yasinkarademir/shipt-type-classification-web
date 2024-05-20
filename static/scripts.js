@@ -3,6 +3,19 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentTheme === "dark") {
         document.body.classList.add("dark-mode");
     }
+
+    fetch('/models/')
+        .then(response => response.json())
+        .then(models => {
+            const modelSelect = document.getElementById('model-select');
+            models.forEach(model => {
+                const option = document.createElement('option');
+                option.value = model;
+                option.text = model;
+                modelSelect.appendChild(option);
+            });
+        });
+
     const fileInput = document.getElementById('file-input');
     fileInput.addEventListener('change', function () {
         const fileName = fileInput.files[0].name;
@@ -57,6 +70,7 @@ function previewImage(event) {
 
 async function uploadImage() {
     const fileInput = document.getElementById('file-input');
+    const modelSelect = document.getElementById('model-select');
     if (fileInput.files.length === 0) {
         setFeedback("Lütfen bir resim seçin.", "error");
         return;
@@ -64,6 +78,7 @@ async function uploadImage() {
 
     const formData = new FormData();
     formData.append('file', fileInput.files[0]);
+    formData.append('model_name', modelSelect.value);
 
     document.getElementById('loading').style.display = 'block';
     document.getElementById('result').innerText = '';
@@ -100,4 +115,44 @@ function addToHistory(predictedClass, confidence) {
     listItem.className = 'list-group-item';
     listItem.innerText = `Sınıf: ${predictedClass} (Güven: ${confidence}%)`;
     historyList.appendChild(listItem);
+}
+
+async function uploadModel() {
+    const modelFileInput = document.getElementById('model-file-input');
+    const modelFeedback = document.getElementById('model-feedback');
+
+    if (modelFileInput.files.length === 0) {
+        modelFeedback.innerHTML = 'Lütfen bir model dosyası seçin.';
+        modelFeedback.style.display = 'block';
+        modelFeedback.className = 'alert alert-danger';
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('model_file', modelFileInput.files[0]);
+
+    try {
+        const response = await fetch('/upload_model/', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            modelFeedback.innerHTML = 'Model başarıyla yüklendi!';
+            modelFeedback.className = 'alert alert-success';
+            setTimeout(() => {
+                location.reload();
+            }, 1000);  // 1 saniye bekledikten sonra sayfayı yeniler
+        } else {
+            const error = await response.json();
+            modelFeedback.innerHTML = 'Model yükleme başarısız. ' + error.detail;
+            modelFeedback.className = 'alert alert-danger';
+        }
+
+        modelFeedback.style.display = 'block';
+    } catch (error) {
+        modelFeedback.innerHTML = 'Bir hata oluştu: ' + error.message;
+        modelFeedback.className = 'alert alert-danger';
+        modelFeedback.style.display = 'block';
+    }
 }

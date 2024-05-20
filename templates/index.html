@@ -30,6 +30,12 @@
         <div class="card-body text-center">
             <h1 class="card-title">Gemi Sınıflandırma</h1>
             <form id="upload-form" enctype="multipart/form-data" class="mb-3">
+                <div class="form-group">
+                    <label for="model-select">Model Seç</label>
+                    <select id="model-select" class="form-control">
+                        <!-- Modeller buraya eklenecek -->
+                    </select>
+                </div>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="file-input" accept="image/*"
                            onchange="previewImage(event)">
@@ -69,24 +75,23 @@
                 </div>
                 <div class="help-item">
                     <span class="help-icon">&#x1F319;</span>
-                    <p>“Karanlık Modu Değiştir” butonunu kullanarak ışık ve karanlık modlar arasında geçiş
-                        yapabilirsiniz.</p>
+                    <p>“Karanlık Modu Değiştir” butonunu kullanarak tema arasında geçiş yapabilirsiniz.</p>
                 </div>
             </div>
+            <hr>
+            <h3>Yeni Model Yükle</h3>
+            <form id="model-upload-form" enctype="multipart/form-data" class="mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="model-file-input" accept=".h5">
+                    <label class="custom-file-label" for="model-file-input">Model dosyası seç</label>
+                </div>
+                <button type="button" class="btn btn-success mt-3" onclick="uploadModel()">Model Yükle</button>
+            </form>
+            <div id="model-feedback" class="alert mt-3" style="display: none;"></div>
         </div>
     </div>
 </div>
 
-<!-- Footer -->
-<footer class="footer mt-5 py-3 bg-light">
-    <div class="container text-center">
-        <span class="text-muted">© 2024 Gemi Sınıflandırma Uygulaması</span>
-    </div>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="/static/scripts.js"></script>
 </body>
 </html>

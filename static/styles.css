@@ -7,14 +7,14 @@
     --btn-background: #007BFF;
     --btn-hover: #0056b3;
     --loading-color: #007BFF;
-    --result-color: #28a745; /* Tahmin sonucunun rengi */
-    --result-font-size: 1.5em; /* Tahmin sonucunun font boyutu */
+    --result-color: #28a745;
+    --result-font-size: 1.5em;
     --alert-success-bg: #d4edda;
     --alert-success-text: #155724;
     --alert-error-bg: #f8d7da;
     --alert-error-text: #721c24;
     --help-icon-color: #007BFF;
-    --border-radius: 15px; /* Yuvarlatılmış köşeler için */
+    --border-radius: 15px;
 }
 
 body.dark-mode {
