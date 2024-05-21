@@ -94,8 +94,8 @@ async function uploadImage() {
 
         if (response.ok) {
             const result = await response.json();
-            document.getElementById('result').innerText = `Tahmin Edilen Sınıf: ${result.predicted_class} (Güven: ${result.confidence.toFixed(2)}%)`;
-            addToHistory(result.predicted_class, result.confidence.toFixed(2));
+            document.getElementById('result').innerText = `Tahmin Edilen Sınıf: ${result.predicted_class}`;
+            addToHistory(result.predicted_class);
             setFeedback("Tahmin başarılı!", "success");
         } else {
             const error = await response.json();
@@ -109,11 +109,11 @@ async function uploadImage() {
     }
 }
 
-function addToHistory(predictedClass, confidence) {
+function addToHistory(predictedClass) {
     const historyList = document.getElementById('history-list');
     const listItem = document.createElement('li');
     listItem.className = 'list-group-item';
-    listItem.innerText = `Sınıf: ${predictedClass} (Güven: ${confidence}%)`;
+    listItem.innerText = `Sınıf: ${predictedClass}`;
     historyList.appendChild(listItem);
 }
 
