@@ -152,3 +152,24 @@ body {
     margin-right: 10px;
     color: var(--help-icon-color);
 }
+
+.image-preview {
+    position: relative;
+    overflow: hidden; /* Hide overflow to enable scrolling */
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    display: none; /* Initially hidden */
+}
+
+.image-preview img {
+    transition: transform 0.3s ease, left 0.3s ease, top 0.3s ease;
+    transform-origin: center center;
+    cursor: grab;
+    position: absolute; /* Allow absolute positioning for dragging */
+}
+
+.zoom-buttons {
+    display: none; /* Initially hidden */
+}
+
