@@ -205,11 +205,57 @@ const shipDescriptions = {
     '042.San_Giorgio-class_transport_dock': 'San Giorgio sınıfı nakliye havuz gemisi, İtalyan Deniz Kuvvetleri\'ne ait amfibi çıkarma gemisidir.'
 };
 
+const shipDamages = {
+    '001.Nimitz-class_aircraft_carrier': 'Nimitz sınıfı uçak gemileri, büyük boyutları nedeniyle liman altyapısına fiziksel zarar verebilir ve yoğun trafik yaratabilir.',
+    '002.KittyHawk-class_aircraft_carrier': 'Kitty Hawk sınıfı uçak gemileri, yüksek tonajları ile iskelelerde ve rıhtımlarda ciddi baskı oluşturabilir.',
+    '003.Midway-class_aircraft_carrier': 'Midway sınıfı uçak gemileri, büyük boyutları ve ağır yükleri nedeniyle liman altyapısında aşınma ve yıpranmaya neden olabilir.',
+    '004.Kuznetsov-class_aircraft_carrier': 'Kuznetsov sınıfı uçak gemileri, devasa boyutları ve ağırlıkları ile liman yapılarında ciddi yapısal hasar riski oluşturur.',
+    '005.Charles_de_Gaulle_aricraft_carrier': 'Charles de Gaulle uçak gemisi, nükleer tahrikli olması nedeniyle limanda radyasyon güvenlik endişeleri yaratabilir.',
+    '006.INS_Virrat_aircraft_carrier': 'INS Viraat uçak gemisi, liman manevralarında zorluk çıkararak rıhtım ve iskelelere zarar verebilir.',
+    '007.INS_Vikramaditya_aircraft_carrier': 'INS Vikramaditya, büyük boyutları nedeniyle liman altyapısında fiziksel aşınma ve hasar oluşturabilir.',
+    '008.Ticonderoga-class_cruiser': 'Ticonderoga sınıfı kruvazörler, güçlü silah sistemleri ve radar ekipmanları nedeniyle elektromanyetik interferansa neden olabilir.',
+    '009.Arleigh_Burke-class_destroyer': 'Arleigh Burke sınıfı muhripler, limanda yakıt ve mühimmat depolama riskleri taşıyabilir.',
+    '010.Akizuki-class_destroyer': 'Akizuki sınıfı muhripler, yüksek hız ve manevra kabiliyetleriyle liman yapılarında çarpma hasarına neden olabilir.',
+    '011.Asagiri-class_destroyer': 'Asagiri sınıfı muhripler, liman altyapısında titreşim ve ses kirliliğine yol açabilir.',
+    '012.Kidd-class_destroyer': 'Kidd sınıfı muhripler, yoğun manevra kabiliyetleri ile liman yapılarına zarar verebilir.',
+    '013.Type_45_destroyer': 'Type 45 muhripleri, elektronik harp ekipmanları ile limanda elektromanyetik interferansa neden olabilir.',
+    '014.Wasp-class_assault_ship': 'Wasp sınıfı amfibi hücum gemileri, büyük boyutları ve yük kapasiteleri ile liman altyapısında aşınma ve yıpranmaya yol açabilir.',
+    '015.Osumi-class_landing_ship': 'Osumi sınıfı çıkarma gemileri, büyük yük kapasiteleri ve ağır araç taşıma potansiyelleriyle rıhtımlarda yapısal hasara neden olabilir.',
+    '016.Hyuga-class_helicopter_destroyer': 'Hyuga sınıfı helikopter muhripleri, limanda hava trafiği ve gürültü kirliliğine yol açabilir.',
+    '017.Lzumo-class_helicopter_destroyer': 'Izumo sınıfı helikopter muhripleri, büyük boyutları ile liman altyapısında fiziksel hasar riski oluşturabilir.',
+    '018.Whitby_Island-class_dock_landing_ship': 'Whitby Island sınıfı rıhtım çıkarma gemileri, büyük yük kapasiteleri ile liman altyapısında aşınma ve yıpranmaya neden olabilir.',
+    '019.San_Antonio-class_transport_dock': 'San Antonio sınıfı taşıma rıhtımları, büyük boyutları ve ağır yükleri ile liman yapılarına fiziksel zarar verebilir.',
+    '020.Freedom-class_combat_ship': 'Freedom sınıfı muharip gemiler, yüksek hız ve manevra kabiliyetleri ile limanda çarpma riski taşır.',
+    '021.Independence-class_combat_ship': 'Independence sınıfı muharip gemiler, gelişmiş silah sistemleri ve radar ekipmanları ile limanda elektromanyetik interferansa neden olabilir.',
+    '022.Sacramento-class_support_ship': 'Sacramento sınıfı destek gemileri, büyük yakıt ve malzeme depolama kapasiteleri ile limanda yangın ve patlama riskleri taşıyabilir.',
+    '023.Crane_ship': 'Vinç gemileri, liman manevralarında iskele ve rıhtımlara zarar verebilecek büyük ve ağır yükleri taşır.',
+    '024.Abukuma-class_frigate': 'Abukuma sınıfı fırkateynler, limanda yüksek manevra kabiliyetleri ile rıhtım ve iskelelere zarar verebilir.',
+    '025.Megayacht': 'Megayatlar, büyük boyutları ile liman altyapısında aşınma ve yıpranmaya yol açabilir.',
+    '026.Cargo_ship': 'Yük gemileri, büyük yük kapasiteleri ile liman altyapısında yapısal hasar ve aşınma riski oluşturur.',
+    '027.Murasame-class_destroyer': 'Murasame sınıfı muhripler, limanda yüksek hız ve manevra kabiliyetleri ile çarpma hasarına neden olabilir.',
+    '028.Container_ship': 'Konteyner gemileri, büyük yük kapasiteleri ve ağır konteynerler ile liman altyapısında aşınma ve yıpranmaya yol açabilir.',
+    '029.Towing_vessel': 'Römorkörler, liman manevralarında diğer gemilere ve liman yapılarına zarar verme riski taşır.',
+    '030.Civil_yacht': 'Sivil yatlar, limanda aşırı trafik ve gürültü kirliliği yaratabilir.',
+    '031.Medical_ship': 'Tıbbi gemiler, limanda biyolojik atık yönetimi ve sağlık güvenliği riskleri taşıyabilir.',
+    '032.Sand_carrier': 'Kum taşıyıcıları, limanda kum ve diğer inşaat malzemelerinin dökülmesiyle çevresel kirlenmeye neden olabilir.',
+    '033.Tank_ship': 'Tank gemileri, büyük yakıt ve kimyasal madde depolama kapasiteleri ile limanda çevresel kirlenme ve patlama riski taşır.',
+    '034.Garibaldi_aircraft_carrier': 'Garibaldi sınıfı uçak gemileri, büyük boyutları ve ağırlıkları ile liman altyapısında yapısal hasar riski oluşturabilir.',
+    '035.Zumwalt-class_destroyer': 'Zumwalt sınıfı muhripler, gelişmiş silah sistemleri ve radar ekipmanları ile limanda elektromanyetik interferansa neden olabilir.',
+    '036.Kongo-class_destroyer': 'Kongo sınıfı muhripler, yüksek hız ve manevra kabiliyetleri ile limanda çarpma riski taşır.',
+    '037.Horizon-class_destroyer': 'Horizon sınıfı muhripler, gelişmiş silah sistemleri ile liman güvenlik riskleri yaratabilir.',
+    '038.Atago-class_destroyer': 'Atago sınıfı muhripler, limanda yüksek hız ve manevra kabiliyetleri ile yapısal hasara neden olabilir.',
+    '039.Mistral-class_amphibious_assault_ship': 'Mistral sınıfı amfibi hücum gemileri, büyük boyutları ve yük kapasiteleri ile liman altyapısında aşınma ve yıpranmaya yol açabilir.',
+    '040.Juan_Carlos_I_Strategic_Projection_Ship': 'Juan Carlos I gemisi, büyük boyutları ve yük kapasiteleri ile liman altyapısında fiziksel hasar riski oluşturabilir.',
+    '041.Maestrale-class_frigate': 'Maestrale sınıfı fırkateynler, limanda yüksek manevra kabiliyetleri ile rıhtım ve iskelelere zarar verebilir.',
+    '042.San_Giorgio-class_transport_dock': 'San Giorgio sınıfı taşıma rıhtımları, büyük boyutları ve ağır yükleri ile liman yapılarına fiziksel zarar verebilir.'
+};
+
 async function uploadImage() {
     const fileInput = document.getElementById('file-input');
     const modelSelect = document.getElementById('model-select');
     const resultElement = document.getElementById('result');
     const shipDescriptionElement = document.getElementById('ship-description');
+    const shipDamageElement = document.getElementById('ship-damage');
 
     if (fileInput.files.length === 0) {
         setFeedback("Lütfen bir resim seçin.", "error");
@@ -223,6 +269,7 @@ async function uploadImage() {
     document.getElementById('loading').style.display = 'block';
     resultElement.innerText = '';
     shipDescriptionElement.style.display = 'none';
+    shipDamageElement.style.display = 'none';
     setFeedback("Resim işleniyor. Lütfen bekleyin...", "success");
 
     try {
@@ -244,9 +291,21 @@ async function uploadImage() {
             if (description) {
                 shipDescriptionElement.innerText = `Açıklama: ${description}`;
                 shipDescriptionElement.style.display = 'block';
+                shipDescriptionElement.classList.add('green-box');
             } else {
                 shipDescriptionElement.innerText = '';
                 shipDescriptionElement.style.display = 'none';
+            }
+
+            // Gemi zararını göster
+            const damage = shipDamages[predictedClass];
+            if (damage) {
+                shipDamageElement.innerText = `Zarar: ${damage}`;
+                shipDamageElement.style.display = 'block';
+                shipDamageElement.classList.add('red-box');
+            } else {
+                shipDamageElement.innerText = '';
+                shipDamageElement.style.display = 'none';
             }
 
             setFeedback("Tahmin başarılı!", "success");
@@ -262,12 +321,22 @@ async function uploadImage() {
     }
 }
 
+
 function addToHistory(predictedClass) {
     const historyList = document.getElementById('history-list');
+
+    // Yeni liste öğesi oluştur
     const listItem = document.createElement('li');
     listItem.className = 'list-group-item';
     listItem.innerText = `Sınıf: ${predictedClass}`;
-    historyList.appendChild(listItem);
+
+    // Liste öğesini başa ekle
+    historyList.insertBefore(listItem, historyList.firstChild);
+
+    // Listenin uzunluğunu kontrol et ve gerekirse fazla öğeleri sil
+    while (historyList.childElementCount > 4) {
+        historyList.removeChild(historyList.lastChild);
+    }
 }
 
 async function uploadModel() {
