@@ -342,6 +342,7 @@ function addToHistory(predictedClass) {
 async function uploadModel() {
     const modelFileInput = document.getElementById('model-file-input');
     const modelFeedback = document.getElementById('model-feedback');
+    const modelSelect = document.getElementById('model-select');
 
     if (modelFileInput.files.length === 0) {
         modelFeedback.innerHTML = 'Lütfen bir model dosyası seçin.';
@@ -359,15 +360,29 @@ async function uploadModel() {
             body: formData
         });
 
+        const result = await response.json();
+
         if (response.ok) {
-            modelFeedback.innerHTML = 'Model başarıyla yüklendi!';
+            modelFeedback.innerHTML = `Model başarıyla yüklendi: ${result.model_name}`;
             modelFeedback.className = 'alert alert-success';
+
+            // Model listesini güncelle
+            modelSelect.innerHTML = '';  // Mevcut seçenekleri temizle
+            result.models.forEach(model => {
+                const option = document.createElement('option');
+                option.value = model;
+                option.text = model;
+                modelSelect.appendChild(option);
+            });
+
+            modelFileInput.value = '';  // Input alanını temizle
+
+            // Mesajı belirli bir süre sonra kaldır
             setTimeout(() => {
-                location.reload();
-            }, 1000);  // 1 saniye bekledikten sonra sayfayı yeniler
+                modelFeedback.style.display = 'none';
+            }, 3000); // 3 saniye sonra mesajı kaldır
         } else {
-            const error = await response.json();
-            modelFeedback.innerHTML = 'Model yükleme başarısız. ' + error.detail;
+            modelFeedback.innerHTML = 'Model yükleme başarısız. ' + result.message;
             modelFeedback.className = 'alert alert-danger';
         }
 

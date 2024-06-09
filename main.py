@@ -100,9 +100,13 @@ async def upload_model(model_file: UploadFile = File(...)):
     with open(model_path, "wb") as buffer:
         shutil.copyfileobj(model_file.file, buffer)
 
+    # Yeni modeli yüklemek için tüm modelleri yeniden yükle
     load_all_models()
 
-    return JSONResponse(content={"model_name": model_file.filename})
+    model_name = model_file.filename.split(".")[0]  # Model adını belirle
+
+    return JSONResponse(
+        content={"message": "Model başarıyla yüklendi!", "model_name": model_name, "models": list(models.keys())})
 
 
 if __name__ == "__main__":
