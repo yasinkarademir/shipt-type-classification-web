@@ -19,6 +19,10 @@ templates = Jinja2Templates(directory="templates")
 models = {}
 models_directory = "./models/"
 
+# models dizini yoksa oluşturulması için kontrol
+if not os.path.exists(models_directory):
+    os.makedirs(models_directory)
+
 
 def load_all_models():
     global models
